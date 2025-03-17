@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,6 +11,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text('My Portfolio'),
+        titleTextStyle: TextStyle(color: Colors.white),
         actions: [
           if (MediaQuery.of(context).size.width > 600) ...[
             TextButton(
@@ -40,9 +42,9 @@ class HomeScreen extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
-                  const DrawerHeader(
+                  DrawerHeader(
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.black.withOpacity(0.8),
                     ),
                     child: Text('Menu', style: TextStyle(color: Colors.white)),
                   ),
@@ -83,82 +85,8 @@ class HomeScreen extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     final isDesktop = MediaQuery.of(context).size.width > 800;
 
-    if (!isDesktop) {
-      return Container(
-        decoration: const BoxDecoration(
-          color: Colors.black,
-          image: DecorationImage(
-            image: AssetImage('assets/profile.jpg'),
-            fit: BoxFit.cover,
-            alignment: Alignment.topCenter,
-          ),
-        ),
-        child: Stack(
-          children: [
-            // Gradient Overlay
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withOpacity(0.7),
-                    Colors.black,
-                  ],
-                  stops: const [0.4, 0.8, 1.0],
-                ),
-              ),
-            ),
-            // Content
-            Positioned(
-              left: 20,
-              right: 20,
-              bottom: 30,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Hi, I am',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Tomasz Gajda',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Front-end Developer / UI Designer',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      _buildSocialIcon(Icons.alternate_email),
-                      _buildSocialIcon(Icons.code),
-                      _buildSocialIcon(Icons.link),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return Container(
+    return isDesktop ?
+    Container(
       height: 500,
       color: Colors.black,
       child: Row(
@@ -239,7 +167,100 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+    )
+        : Container(
+      height: MediaQuery.of(context).size.height - 55,
+      child: Stack(
+        children: [
+          // Image Carousel
+          CarouselSlider(
+            options: CarouselOptions(
+              height: MediaQuery.of(context).size.height - 55,
+              viewportFraction: 1.0,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 5),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.easeInOut,
+              enlargeCenterPage: false,
+            ),
+            items: [
+              'assets/profile.png',
+              'assets/profile2.png',
+              'assets/profile3.png',
+            ].map((imagePath) {
+              return Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+          // Gradient Overlay
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  Colors.black.withOpacity(0.7),
+                  Colors.black,
+                ],
+                stops: const [0.4, 0.8, 1.0],
+              ),
+            ),
+          ),
+          // Content
+          Positioned(
+            left: 20,
+            right: 20,
+            bottom: 30,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Hi, I am',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Tomasz Gajda',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Front-end Developer / UI Designer',
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    _buildSocialIcon(Icons.alternate_email),
+                    _buildSocialIcon(Icons.code),
+                    _buildSocialIcon(Icons.link),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
+    ;
   }
 
   Widget _buildSocialIcon(IconData icon) {
