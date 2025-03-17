@@ -15,9 +15,9 @@ class HomeScreen extends StatelessWidget {
         actions: [
           if (MediaQuery.of(context).size.width > 600) ...[
             TextButton(
-              onPressed: () => _scrollToSection(context, 'AboutMe'),
+              onPressed: () => _scrollToSection(context, 'Portfolio'),
               child:
-                  const Text('About Me', style: TextStyle(color: Colors.white)),
+                  const Text('Portfolio', style: TextStyle(color: Colors.white)),
             ),
             TextButton(
               onPressed: () => _scrollToSection(context, 'Skills'),
@@ -25,8 +25,13 @@ class HomeScreen extends StatelessWidget {
                   const Text('Skills', style: TextStyle(color: Colors.white)),
             ),
             TextButton(
-              onPressed: () => _scrollToSection(context, 'Portfolio'),
-              child: const Text('Portfolio',
+              onPressed: () => _scrollToSection(context, 'Experience'),
+              child: const Text('Experience',
+                  style: TextStyle(color: Colors.white)),
+            ),
+            TextButton(
+              onPressed: () => _scrollToSection(context, 'AboutMe'),
+              child: const Text('About Me',
                   style: TextStyle(color: Colors.white)),
             ),
             TextButton(
@@ -106,9 +111,9 @@ class HomeScreen extends StatelessWidget {
                       fontSize: 24,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 0),
                   const Text(
-                    'Tomasz Gajda',
+                    'Ismail Jabiulla',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 48,
@@ -117,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'Front-end Developer / UI Designer',
+                    'Software Engineer - Mobile Application',
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: 20,
@@ -231,7 +236,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Tomasz Gajda',
+                  'Ismail Jabiulla',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 48,
@@ -240,7 +245,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Front-end Developer / UI Designer',
+                  'Software Engineer - Mobile Application',
                   style: TextStyle(
                     color: Colors.white70,
                     fontSize: 16,
@@ -278,32 +283,37 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.all(40.0),
       child: Column(
         children: [
-          const Text(
-            'ABOUT ME',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          Container(
+            width: 300,
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Text(
+              'ABOUT ME',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 16),
           LayoutBuilder(
             builder: (context, constraints) {
               final isDesktop = constraints.maxWidth > 800;
-              return Wrap(
-                spacing: 40,
-                runSpacing: 40,
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildServiceCard(
-                    'DESIGN',
-                    'Design services description',
-                    isDesktop,
-                  ),
+                  // _buildServiceCard(
+                  //   'DESIGN',
+                  //   'Design services description',
+                  //   isDesktop,
+                  // ),
                   _buildServiceCard(
                     'DEVELOPMENT',
-                    'Development services description',
+                    "I am a passionate mobile app developer with over two years of experience specializing in Flutter.\nI have delivered and published several client projects on the Play Store and App Store, integrating payment systems like Stripe. My expertise includes debugging, testing, and maintaining apps to ensure optimal performance. I specialize in bug fixing, REST APIs, real-time communication, and notifications through socket integration. I also have strong experience with Firebase authentication. Skilled in manual and automated testing, including unit and integration tests, I ensure smooth app functionality. I handle app updates, feature enhancements, and long-term maintenance to maintain performance. With experience in VPN apps, I continue to enhance my Flutter skills and explore Swift. I am also focused on improving my English communication for effective global collaboration.",
                     isDesktop,
-                  ),
-                  _buildServiceCard(
-                    'MAINTENANCE',
-                    'Maintenance services description',
-                    isDesktop,
+                    context
                   ),
                 ],
               );
@@ -314,22 +324,26 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildServiceCard(String title, String description, bool isDesktop) {
+  Widget _buildServiceCard(String title, String description, bool isDesktop, context) {
     return Container(
-      width: isDesktop ? 300 : double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(8),
-      ),
+      width: isDesktop ? MediaQuery.of(context).size.width*0.90 : double.infinity,
+      // padding: const EdgeInsets.all(20),
+      // decoration: BoxDecoration(
+      //   border: Border.all(color: Colors.grey),
+      //   borderRadius: BorderRadius.circular(8),
+      // ),
       child: Column(
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
+          // Text(
+          //   title,
+          //   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          // ),
           const SizedBox(height: 10),
-          Text(description),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ),
         ],
       ),
     );
@@ -347,18 +361,18 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           _buildSkillSection('USING NOW:', [
-            'HTML5',
-            'CSS3',
-            'SASS',
-            'JavaScript',
-            'React',
-            'Bootstrap',
+            'Dart',
+            'Flutter',
+            'REST APIs',
+            'Firebase',
             'Git',
-            'Figma'
+            'Figma',
+            'Socket.io',
+            'Stripe',
           ]),
           const SizedBox(height: 20),
           _buildSkillSection(
-              'LEARNING:', ['Node.js', 'MySQL', 'MongoDB', 'TypeScript']),
+              'LEARNING:', ['Swift', 'Kotlin', 'Node.js', 'MongoDB']),
           const SizedBox(height: 20),
           _buildSkillSection(
               'OTHER SKILLS:', ['English', 'Spanish', 'Google', 'C']),
