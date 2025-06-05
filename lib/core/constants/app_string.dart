@@ -21,6 +21,9 @@ class AppStrings {
   static const String aboutBio2 = "My journey in software development started with a curiosity about how mobile apps work, and it has evolved into a deep passion for creating seamless user experiences. I've worked on various projects ranging from e-commerce apps to social platforms.";
   static const String aboutBio3 = "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community. I believe in continuous learning and staying updated with the latest trends in mobile development.";
 
+  // Skills Section
+  static const String skillsTitle = "Skills & Expertise";
+  static const String skillsSubtitle = "Here are the technologies and tools I work with to bring ideas to life";
 
   // Social Links
   static const String githubUrl = "https://github.com/MrJabiulla";

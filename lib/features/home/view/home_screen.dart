@@ -5,6 +5,8 @@ import '../../../core/constants/app_string.dart';
 import '../widgets/about_section.dart';
 import '../widgets/enhanced_navbar.dart';
 import '../widgets/hero_sections.dart';
+import '../widgets/project_section.dart';
+import '../widgets/skills_section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -103,32 +105,25 @@ class _HomeScreenState extends State<HomeScreen> {
               child: HeroSection(onNav: _scrollToSection),
             ),
 
-            // Placeholder sections - will be replaced with actual sections
             // About section - NEW!
             Container(
               key: _sectionKeys['about'],
               child: const AboutSection(),
             ),
 
-
+            // Skills section - NEW!
             Container(
               key: _sectionKeys['skills'],
-              height: 600,
-              color: Colors.grey[100],
-              child: const Center(
-                child: Text('Skills Section - Coming Next!',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              ),
+              child: const SkillsSection(),
             ),
+
+
+            // Projects section
             Container(
               key: _sectionKeys['projects'],
-              height: 600,
-              color: AppColors.background,
-              child: const Center(
-                child: Text('Projects Section - Coming Next!',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              ),
+              child: const ProjectsSection(),
             ),
+
             Container(
               key: _sectionKeys['contact'],
               height: 600,
