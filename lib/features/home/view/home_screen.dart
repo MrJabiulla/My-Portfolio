@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/utils/extentions.dart';
 import '../../../core/constants/app_color.dart';
 import '../../../core/constants/app_string.dart';
+import '../widgets/about_section.dart';
 import '../widgets/enhanced_navbar.dart';
 import '../widgets/hero_sections.dart';
 
@@ -103,15 +104,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Placeholder sections - will be replaced with actual sections
+            // About section - NEW!
             Container(
               key: _sectionKeys['about'],
-              height: 600,
-              color: AppColors.background,
-              child: const Center(
-                child: Text('About Section - Coming Next!',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              ),
+              child: const AboutSection(),
             ),
+
+
             Container(
               key: _sectionKeys['skills'],
               height: 600,
