@@ -41,7 +41,7 @@ class _EnhancedHeroCarouselState extends State<EnhancedHeroCarousel> {
           CarouselSlider(
             carouselController: _carouselController,
             options: CarouselOptions(
-              height: 600,
+              height: MediaQuery.of(context).size.height - 70,
               viewportFraction: 1.0,
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 4),

@@ -23,7 +23,7 @@ class HeroSection extends StatelessWidget {
 
   Widget _buildDesktopHero(BuildContext context) {
     return Container(
-      height: 600,
+      height: MediaQuery.of(context).size.height - 70,
       color: AppColors.black,
       child: Row(
         children: [
